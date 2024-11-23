@@ -1,25 +1,34 @@
 import './index.css';
-import starWarsLogo from './assets/star-wars-logo.png';
-import StarshipList from './StarshipList.tsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './layout/Layout'
+import StarshipList from './StarshipList.tsx'
+import Home from './Home.tsx'
+import Login from './features/login/Login.tsx';
+import Register from './features/register/Register.tsx';
+import ProtectedRoute from './utils/ProtectedRoute.tsx';
+import { useAuth } from './context/authContext.tsx';
+
+
 
 export default function App() {
+
+  const {user} = useAuth()
+
   return (
     <>
-      <header className='flex flex-col justify-center py-6'>
-        <div className='flex justify-center'>
-          <img src={starWarsLogo} width={250} alt="Star Wars Logo" />
-        </div>
-        <nav className='flex justify-center border-t-2 border-b-2 border-[#787878]'>
-          <ul className='flex border-x-2 border-[#787878] divide-x-2'>
-            <li className="border-y border-[#787878] first:border-l last:border-r px-4 py-2">HOME</li>
-            <li className="border-y border-[#787878] first:border-l last:border-r px-4 py-2">STARSHIPS</li>
-          </ul>
-        </nav>
-      </header>
-
-      <main className='flex justify-center'>
-        <StarshipList />
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route element={<ProtectedRoute canNavigate={user} redirectPath='/login' />}>
+              <Route path="starships" element={<StarshipList />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="sign-up" element={<Register/>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
