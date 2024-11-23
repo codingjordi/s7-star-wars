@@ -8,8 +8,6 @@ import Register from './features/register/Register.tsx';
 import ProtectedRoute from './utils/ProtectedRoute.tsx';
 import { useAuth } from './context/authContext.tsx';
 
-
-
 export default function App() {
 
   const {user} = useAuth()
