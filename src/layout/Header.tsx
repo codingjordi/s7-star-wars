@@ -1,28 +1,32 @@
-import React from 'react'
+import React from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
 import starWarsLogo from '../assets/star-wars-logo.png';
 import starWarsLogoMobile from '../assets/star-wars-logo-mobile.png';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/authContext';
 
 export default function Header() {
-
   const { user, logout } = useAuth();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const location = useLocation(); // Hook para obtener la ruta actual
 
   const handleLogout = async () => {
     await logout();
     navigate('/home', {
-      replace: true
-    })
-  }
+      replace: true,
+    });
+  };
+
+  const headerBgClass =
+    ((location.pathname === '/starships') || (location.pathname === '/login') || (location.pathname === '/sign-up'))
+      ? 'bg-transparent'
+      : 'bg-black';
 
   return (
 
-    <header className="flex flex-col justify-center">
-      <div className="grid grid-cols-3 mx-28 my-7">
-        <div>
-          <div className="flex items-center gap-4">
+    <header className={`relative z-50 flex flex-col justify-center ${headerBgClass}`}>
+      <div className="grid grid-cols-2 md:grid-cols-3 items-center md:items-start md:px-10 lg:px-30 my-7">
+        <div className='hidden md:block'>
+          <div className="flex items-center md:gap-2 lg:gap-4">
             <a href="https://www.tiktok.com/@starwars?lang=es" className=' text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars TikTok account' target='_blank'>
               <svg xmlns="http://www.w3.org/2000/svg" height="" width="21" viewBox="0 0 448 512">
                 <path fill="#ffffff" d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
@@ -43,7 +47,7 @@ export default function Header() {
                 <path fill="#ffffff" d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z" />
               </svg>
             </a>
-            <a href="https://www.youtube.com/StarWars/" className='border-[#787878] border-r pr-5 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars Youtube channel' target='_blank'>
+            <a href="https://www.youtube.com/StarWars/" className='border-[#787878] border-r md:pr-3 lg:pr-5 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars Youtube channel' target='_blank'>
               <svg xmlns="http://www.w3.org/2000/svg" height="" width="27" viewBox="0 0 576 512">
                 <path fill="#ffffff" d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z" />
               </svg>
@@ -57,15 +61,15 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <img src={starWarsLogoMobile} aria-label='Star Wars Logo' className='md:hidden' />
+        <div className="flex justify-center h-fit">
+          <img src={starWarsLogoMobile} aria-label='Star Wars Logo' className='md:hidden'/>
           <img src={starWarsLogo} aria-label="Star Wars Logo" className='hidden md:block' />
         </div>
 
 
         <div className="flex justify-end h-fit">
           {user !== undefined ?
-            <div className="flex items-center">  
+            <div className="flex items-center">
               <img className='rounded-full' src={user.displayName !== null ? user.photoURL : '../../src/assets/default-avatar.jpg'} height={50} width={50} alt="" />
               <p className='px-4'>Howdy, {user.displayName !== null ? user.displayName.split(' ')[0] : 'fella'}!</p>
               <button

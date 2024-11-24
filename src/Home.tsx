@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 export default function Home() {
   return (
     <>
-      <div className="star-wars-intro">
+      <div className="star-wars-intro ">
         <p className="intro-text">
           A few days ago, during...
         </p>
