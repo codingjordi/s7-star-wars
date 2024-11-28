@@ -24,7 +24,7 @@ export default function Header() {
   return (
 
     <header className={`relative z-50 flex flex-col justify-center ${headerBgClass}`}>
-      <div className="grid grid-cols-2 md:grid-cols-3 items-center md:items-start md:px-10 lg:px-30 my-7">
+      <div className="grid grid-cols-2 px-3 md:grid-cols-3 items-center md:items-start md:px-10 lg:px-30 my-7">
         <div className='hidden md:block'>
           <div className="flex items-center md:gap-2 lg:gap-4">
             <a href="https://www.tiktok.com/@starwars?lang=es" className=' text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars TikTok account' target='_blank'>
@@ -48,9 +48,7 @@ export default function Header() {
               </svg>
             </a>
             <a href="https://www.youtube.com/StarWars/" className='border-[#787878] border-r md:pr-3 lg:pr-5 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars Youtube channel' target='_blank'>
-              <svg xmlns="http://www.w3.org/2000/svg" height="" width="27" viewBox="0 0 576 512">
-                <path fill="#ffffff" d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z" />
-              </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" width="27" viewBox="0 0 576 512"><path fill="#ffffff" d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"/></svg>
             </a>
             <a href="https://starwarskids.com/" className='text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium' aria-label='Star Wars Kids' target='_blank'>
               <svg fill="none" height="" viewBox="0 0 40 15" width="40" xmlns="http://www.w3.org/2000/svg">
@@ -83,10 +81,10 @@ export default function Header() {
             :
             <ul className="flex divide-x-2">
               <NavLink to='/login'>
-                <li className="px-4 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium">LOG IN</li>
+                <li className="mr-2 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium">LOG IN</li>
               </NavLink>
               <NavLink to='/sign-up'>
-                <li className="px-4 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium">SIGN UP</li>
+                <li className="ml-2 text-white transition-all duration-300 cursor-pointer hover:text-white hover:drop-shadow-[0_0_7px_rgba(255,255,255,0.7)] hover:font-medium">SIGN UP</li>
               </NavLink>
             </ul>
           }

@@ -100,7 +100,7 @@ export default function Login() {
                 <div className="star"></div>
                 <div className="star"></div>
             </div>
-            <div className='mx-auto flex flex-col items-center bg-zinc-600 my-8 p-3 rounded-lg md:w-2/4 lg:w-1/4 relative z-10'>
+            <div className='mx-2 md:mx-auto flex flex-col items-center bg-zinc-600 my-8 p-3 rounded-lg md:w-2/4 lg:w-1/4 relative z-10'>
                 <div className=''>
                     <h2 className='text-2xl font-semibold text-center'>Log in to the galaxy archive</h2>
                     {error && <p className='text-red-500 mb-2'>{error}</p>}

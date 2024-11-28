@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ export default function Register() {
   const [error, setError] = useState<string | null>(null);
 
   const { register } = useAuth();
+  const navigate = useNavigate()
 
   const validateInputs = () => {
     if (!email || !password || !confirmPassword) {
@@ -41,6 +43,9 @@ export default function Register() {
     try {
       await register(email, password);
       setError(null); // Limpia errores en caso de éxito
+      navigate('/starships', {
+        replace: true,
+      });
     } catch (err: any) {
       setError(err.message || 'Registration failed. Please try again.');
     } finally {
