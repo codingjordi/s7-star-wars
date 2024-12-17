@@ -1,5 +1,5 @@
 export default async function fetchStarships( page : number) {
-  const URL = 'https://swapi.dev/api/starships/?page=';
+  const URL = 'https://swapi.tech/api/starships/?page=';
 
   try {
     const res = await fetch(`${URL}${page}`);
